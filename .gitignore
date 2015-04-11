@@ -3,6 +3,13 @@
 *.ko
 *.obj
 *.elf
+*.cmd
+*~
+*.map
+*.symvers
+*.order
+.tmp_versions/
+
 
 # Precompiled Headers
 *.gch
