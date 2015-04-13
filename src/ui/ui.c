@@ -163,14 +163,14 @@ static void print_stack(void) {
 
 
     for(i = 0; i < 10; i++) {
-        if((base & 0xFFFFFFFFFFFFF000) != ((base - i * 8) & 0xFFFFFFFFFFFFF000)) {
-            sprint_addr(buffer, base - i * 8);
+        if((base & 0xFFFFFFFFFFFFF000) != ((base + i * 8) & 0xFFFFFFFFFFFFF000)) {
+            sprint_addr(buffer, base + i * 8);
             buffer[16] = '\0';
             ui_listview_additem(ice_ui.stack_view, buffer, 0, default_bgcolor, default_fgcolor);
-            base = base - i * 8;
+            base = base + i * 8;
         }
 
-        sprintf(buffer, "%03lX %016lX", (ice.regs->sp - i * 8) & 0x0000000000000FFF, *(unsigned long*)(ice.regs->sp - i * 8));
+        sprintf(buffer, "%03lX %016lX", (ice.regs->sp + i * 8) & 0x0000000000000FFF, *(unsigned long*)(ice.regs->sp + i * 8));
         ui_listview_additem(ice_ui.stack_view, buffer, 0, default_fgcolor, default_bgcolor);
     }
 
